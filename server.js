@@ -13,7 +13,8 @@ const webhookSecret = process.env.STRIPE_WEBHOOK_SECRET && !process.env.STRIPE_W
 const PRODUCTS = {
   'jollof-rice-tray': { name:'Jollof Rice Tray', description:'Serves 10–12. Classic party jollof rice.', unit_amount:7500, min:1, max:30 },
   'grilled-chicken-platter': { name:'Grilled Chicken Platter', description:'Serves 8–10. Marinated grilled chicken pieces.', unit_amount:10000, min:1, max:30 },
-  'party-package': { name:'Party Package', description:'Per person. Jollof rice, chicken, plantain and salad. Minimum 20 people.', unit_amount:1800, min:20, max:300 }
+  'party-package': { name:'Party Package', description:'Per person. Jollof rice, chicken, plantain and salad. Minimum 20 people.', unit_amount:1800, min:20, max:300 },
+  'test-product': { name:'test product', description:'Serves: water. teesting', unit_amount:100, min:1, max:30 }
 };
 
 app.post('/api/stripe-webhook', express.raw({type:'application/json'}), (req,res)=>{
