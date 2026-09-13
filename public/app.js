@@ -1,7 +1,8 @@
 const products=[
 {id:'jollof-rice-tray',name:'Jollof Rice Tray',desc:'Classic party jollof rice.',detail:'Serves 10–12',price:75,min:1,unit:'tray',emoji:'🍚'},
 {id:'grilled-chicken-platter',name:'Grilled Chicken Platter',desc:'Marinated grilled chicken pieces.',detail:'Serves 8–10',price:100,min:1,unit:'platter',emoji:'🍗'},
-{id:'party-package',name:'Party Package',desc:'Jollof rice, chicken, plantain and salad.',detail:'Minimum 20 people',price:18,min:20,unit:'person',emoji:'🍽️'}];
+{id:'party-package',name:'Party Package',desc:'Jollof rice, chicken, plantain and salad.',detail:'Minimum 20 people',price:18,min:20,unit:'person',emoji:'🍽️'},
+{id:'test-product',name:'test product',desc:'teesting',detail:'Serves: water',price:1,min:1,unit:'item',emoji:'💧'}];
 const cart=JSON.parse(localStorage.getItem('takin-cart')||'{}'); const $=s=>document.querySelector(s); const money=n=>new Intl.NumberFormat('en-GB',{style:'currency',currency:'GBP'}).format(n);
 function save(){localStorage.setItem('takin-cart',JSON.stringify(cart));renderCart()} function add(id){const p=products.find(x=>x.id===id);if(!cart[id])cart[id]=p.min;else cart[id]++;save();toast(id==='party-package'&&cart[id]===20?'Party Package added for 20 people':'Added to basket')} function change(id,d){const p=products.find(x=>x.id===id);cart[id]=(cart[id]||p.min)+d;if(cart[id]<p.min)delete cart[id];save()}
 function renderProducts(){$('#productGrid').innerHTML=products.map(p=>`<article class="product-card"><div class="product-art"><span>${p.emoji}</span></div><div class="product-copy"><div class="product-title"><h3>${p.name}</h3><span class="price">${money(p.price)}${p.unit==='person'?'<small>/ person</small>':''}</span></div><strong class="serves">${p.detail}</strong><p>${p.desc}</p></div><button class="add-btn" onclick="add('${p.id}')">Add to basket</button></article>`).join('')}
